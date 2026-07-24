@@ -15,14 +15,14 @@ Given a Guardian article URL or raw text, the service returns:
 
 Text is lemmatized, vectorized with TF-IDF (unigrams + bigrams, top 5000 features), then classified.
 
-| Task | Model                 | Eval Metric |
-|---|-----------------------|---|
-| Section ID (42 classes) | LogReg (L2, C=3.6)    | F1 macro = **0.829** |
-| Tags (multi-label) | OVR LogReg (L2, C=30) | F1 samples = **0.633** |
+| Task                    | Model                 | Eval Metric |
+|-------------------------|-----------------------|---|
+| Section ID (43 classes) | LogReg (L2, C=3.6)    | F1 macro = **0.829** |
+| Tags (multi-label)      | OVR LogReg (L2, C=30) | F1 samples = **0.633** |
 
 **NER — fine-tuned `dslim/bert-base-NER`**
 
-Fine-tuned on ~830 manually annotated Guardian sentences (train) + 200 (eval) in CoNLL format. Entities: `PER`, `ORG`, `LOC`, `MISC`. 
+Fine-tuned on 832 manually annotated Guardian sentences (train) + 200 (eval) in CoNLL format. Entities: `PER`, `ORG`, `LOC`, `MISC`. 
 Best eval F1 = **0.836** (epoch 3)
 
 ## Project structure
