@@ -1,13 +1,13 @@
 # Guardian NER & Article Classifier
 
-NLP pipeline for Guardian articles: section classification, multi-label tag prediction, and named entity recognition. Served via FastAPI.
+NLP pipeline for Guardian articles: section classification, multi-label tag prediction and NER. Uses FastAPI.
 
 ## What it does
 
 Given a Guardian article URL or raw text, the service returns:
-- **section_id** — predicted section (e.g. `books`, `technology`, `environment`)
-- **tags** — predicted content tags (e.g. `books/fiction`, `environment/climate-crisis`)
-- **entities** — named entities extracted from the text (persons, organizations, locations, misc)
+- **section_id** - predicted section (e.g. `books`, `technology`, `environment`)
+- **tags** - predicted content tags (e.g. `books/fiction`, `environment/climate-crisis`)
+- **entities** - named entities extracted from the text (persons, organizations, locations, misc)
 
 ## Models
 
@@ -39,21 +39,25 @@ src/
   ml/
     classifiers.py                 # section + tags prediction
     ner.py                         # NER inference
+  notebooks/
+    data_collection_and_filtering.ipynb  # notebook that was used to collect data and filter by section_id and etc
+    ner.ipynb                            # notebook with NER model fine-tuning
+    classifiers.py                       # notebook with LogReg training for section_id and tags prediction
 ```
 
 ## API endpoints
 
-`POST /analyze/by_url` — fetch article from Guardian URL and analyze it.
+`POST /analyze/by_url` - fetch article from Guardian URL and analyze it.
 ```json
 {"url": "https://www.theguardian.com/environment/2026/jul/20/some-article"}
 ```
 
-`POST /analyze/by_text` — analyze raw title + body text directly.
+`POST /analyze/by_text` - analyze raw title + body text directly.
 ```json
 {"title": "Article title", "body_text": "Article body..."}
 ```
 
-Both return:
+Example return:
 ```json
 {
   "section_id": "environment",
